@@ -1,7 +1,7 @@
 # Jam Hearts Interface Study
 
-Static study website containing researcher access and two participant conditions.
+Static study website containing a universal participant workflow and two participant conditions.
 
-- Researcher page: https://vavavita.github.io/jam-hearts-study/
-- Condition A: https://vavavita.github.io/jam-hearts-study/a/index.html
-- Condition B: https://vavavita.github.io/jam-hearts-study/b/index.html
+- Universal participant study: `https://vavavita.github.io/jam-hearts-study/study.html`
+- Condition A: `/a/index.html`
+- Condition B: `/b/index.html`
