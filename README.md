@@ -2,5 +2,6 @@
 
 Static study website containing researcher access and two participant conditions.
 
-- Condition A: `/a/index.html`
-- Condition B: `/b/index.html`
+- Researcher page: https://vavavita.github.io/jam-hearts-study/
+- Condition A: https://vavavita.github.io/jam-hearts-study/a/index.html
+- Condition B: https://vavavita.github.io/jam-hearts-study/b/index.html
