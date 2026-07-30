@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+:root{--bg:#F7F5F0;--text:#202020;--muted:#5F625F;--green:#24342F;--orange:#B85C38;--beige:#E9E3D9;--white:#FFFFFF;--border:#D2CCC2}
+body{min-width:1024px;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;line-height:1.55}
+a{text-decoration:none}
+.site-main{min-height:calc(100vh - 300px)}
+.container{width:min(1120px,calc(100% - 96px));margin-inline:auto}
+.page-hero{padding:76px 0 42px}
+.page-hero h1{font-size:48px;line-height:1.08;letter-spacing:-1.5px;margin-bottom:18px}
+.page-hero p{font-size:18px;color:var(--muted);max-width:760px}
+.eyebrow{font-size:14px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:var(--orange)}
+.button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border:1px solid var(--orange);border-radius:8px;background:var(--orange);color:var(--white);font-weight:700}
+.button.light{background:var(--white);color:var(--text);border-color:var(--border)}
+.site-footer{margin-top:88px;padding:48px;background:var(--green);color:var(--white)}
+.footer-inner{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.footer-inner p:last-child{grid-column:1/-1;color:#d8dedb;font-size:14px;padding-top:16px;border-top:1px solid rgba(255,255,255,.2)}
+.study-note{padding:12px 24px;text-align:center;background:#fff4dd;border-bottom:1px solid #decba2;font-size:14px}
+

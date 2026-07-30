@@ -1,0 +1,5 @@
+const current=document.body.dataset.page;
+const links=[['programs','Programs'],['events','Events'],['membership','Membership'],['visit','Visit'],['contact','Contact']];
+document.querySelector('#site-header').innerHTML=`<div class="study-note">Please complete this study on a laptop or desktop computer. Do not use a phone.</div><header class="header-a"><a class="logo" href="index.html"><strong>JAM HEARTS</strong><span>Community Arts Center</span></a><nav class="main-nav" aria-label="Primary navigation">${links.map(([key,label])=>`<a class="${current===key?'active':''}" href="${key}.html">${label}</a>`).join('')}<a class="nav-button" href="programs.html">View Programs</a></nav></header>`;
+document.querySelector('#site-footer').innerHTML=`<footer class="site-footer"><div class="container footer-inner"><p><strong>JAM HEARTS Community Arts Center</strong><br>48 Willow Avenue</p><p>General questions: hello@jamhearts.org<br>Phone: (555) 014-6832</p><p>© 2026 Jam Hearts Community Arts Center</p></div></footer>`;
+
