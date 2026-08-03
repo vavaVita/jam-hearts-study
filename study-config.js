@@ -1,4 +1,5 @@
 window.JH_STUDY_CONFIG = {
-  firebaseProjectId: "",
-  firebaseApiKey: ""
+  firebaseProjectId: "jam-hearts-study",
+  firebaseApiKey: "AIzaSyCsCNlFEzkD_IP9n-jkZ7R7IPIKiFttVdA"
 };
+
