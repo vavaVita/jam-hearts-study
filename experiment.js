@@ -59,6 +59,10 @@ function showConsent() {
           <input id="consent" type="checkbox">
           <span>I am at least 18 years old, I have read the information above, and I agree to participate.</span>
         </label>
+        <div class="study-instructions">
+          <strong>How it works</strong>
+          <p>Each task will appear at the top of the page. Navigate the website below it to find the answer, select your answer, and continue to the next task.</p>
+        </div>
         <button id="begin" class="primary" disabled>Begin Study</button>
       </section>
     </div>`;
