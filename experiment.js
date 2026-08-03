@@ -72,10 +72,9 @@ function showConsent() {
 
 function beginStudy() {
   session = {
-    studyVersion: "2026-07-five-minute",
     participantId: participantId(),
     condition: Math.random() < 0.5 ? "A" : "B",
-    startedAt: new Date().toISOString(),
+    ageConfirmed: true,
     startedAtMs: Date.now(),
     taskAnswers: [],
     recallAnswers: [],
@@ -201,14 +200,38 @@ async function finishStudy(event) {
   }
   const button = document.querySelector("#submit-study");
   button.disabled = true;
-  button.textContent = "Saving…";
-  session.surveyRatings = ratings;
-  session.endedAt = new Date().toISOString();
-  session.completionTimeSeconds = Math.round((Date.now() - session.startedAtMs) / 100) / 10;
-  session.taskScore = session.taskAnswers.filter(answer => answer.correct).length;
-  session.recallScore = session.recallAnswers.filter(answer => answer.correct).length;
-  delete session.startedAtMs;
-  session.saveMode = await saveResult(session);
+  button.textContent = "Savingâ€¦";
+  const result = {
+    participantId: session.participantId,
+    condition: session.condition,
+    ageConfirmed: session.ageConfirmed,
+    taskAnswers: {
+      membership: session.taskAnswers[0].answer,
+      parking: session.taskAnswers[1].answer,
+      accessibility: session.taskAnswers[2].answer
+    },
+    taskCorrect: {
+      membership: session.taskAnswers[0].correct,
+      parking: session.taskAnswers[1].correct,
+      accessibility: session.taskAnswers[2].correct
+    },
+    recallAnswers: {
+      closedDay: session.recallAnswers[0].answer,
+      photographyRoom: session.recallAnswers[1].answer,
+      exhibitionName: session.recallAnswers[2].answer
+    },
+    recallScore: session.recallAnswers.filter(answer => answer.correct).length,
+    uxRatings: {
+      easyToNavigate: ratings[0],
+      knewWhereToClick: ratings[1],
+      requiredLittleEffort: ratings[2],
+      organized: ratings[3],
+      comfortableUsingAgain: ratings[4]
+    },
+    totalTimeSeconds: Math.max(0.1, Math.round((Date.now() - session.startedAtMs) / 100) / 10)
+  };
+  const saveMode = await saveResult(result);
+  session = { ...result, saveMode };
   localStorage.removeItem(ACTIVE_KEY);
   showThanks();
 }
@@ -227,12 +250,25 @@ function firestoreValue(value) {
 async function saveResult(result) {
   const config = window.JH_STUDY_CONFIG || {};
   if (config.firebaseProjectId && config.firebaseApiKey) {
-    const endpoint = `https://firestore.googleapis.com/v1/projects/${encodeURIComponent(config.firebaseProjectId)}/databases/(default)/documents/responses?documentId=${encodeURIComponent(result.participantId)}&key=${encodeURIComponent(config.firebaseApiKey)}`;
+    const documentName = `projects/${config.firebaseProjectId}/databases/(default)/documents/responses/${result.participantId}`;
+    const endpoint = `https://firestore.googleapis.com/v1/projects/${encodeURIComponent(config.firebaseProjectId)}/databases/(default)/documents:commit?key=${encodeURIComponent(config.firebaseApiKey)}`;
     try {
       const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fields: Object.fromEntries(Object.entries(result).map(([key, value]) => [key, firestoreValue(value)])) })
+        body: JSON.stringify({
+          writes: [{
+            update: {
+              name: documentName,
+              fields: Object.fromEntries(Object.entries(result).map(([key, value]) => [key, firestoreValue(value)]))
+            },
+            updateTransforms: [{
+              fieldPath: "completedAt",
+              setToServerValue: "REQUEST_TIME"
+            }],
+            currentDocument: { exists: false }
+          }]
+        })
       });
       if (response.ok) return "firebase";
     } catch (_) {
@@ -249,16 +285,19 @@ function showThanks() {
   app.innerHTML = `
     <div class="center-shell">
       <section class="study-card">
-        <div class="thank-mark">✓</div>
+        <div class="thank-mark">âœ“</div>
         <p class="eyebrow">Complete</p>
         <h1>Thank you</h1>
-        <p>Your response has been recorded. You may now close this window.</p>
+        <p>${session.saveMode === "firebase"
+          ? "Your response has been recorded. You may now close this window."
+          : "Your response could not be sent. Please keep this page open and tell the researcher."}</p>
         <div class="meta">
           <span>Participant ${escapeHtml(session.participantId)}</span>
-          <span>Completion time ${escapeHtml(session.completionTimeSeconds)} seconds</span>
+          <span>Completion time ${escapeHtml(session.totalTimeSeconds)} seconds</span>
         </div>
       </section>
     </div>`;
 }
 
 showConsent();
+
