@@ -11,6 +11,8 @@ h2{font-size:28px}
 p{color:var(--muted);line-height:1.65}
 .consent-box{display:flex;gap:12px;align-items:flex-start;margin:26px 0;padding:18px;background:var(--sand);border-radius:12px;line-height:1.5}
 .consent-box input{margin-top:4px;width:18px;height:18px}
+.study-instructions{margin:-10px 0 24px;padding:16px 18px;border-left:4px solid var(--orange);background:#fff8f1;border-radius:0 10px 10px 0;line-height:1.5}
+.study-instructions p{margin:5px 0 0}
 .primary{border:0;border-radius:9px;background:var(--orange);color:#fff;font-weight:700;padding:14px 22px;cursor:pointer}
 .primary:disabled{opacity:.45;cursor:not-allowed}
 .progress{display:flex;gap:8px;margin-bottom:18px}
@@ -38,3 +40,4 @@ p{color:var(--muted);line-height:1.65}
 .thank-mark{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--green);color:#fff;font-size:30px;margin-bottom:22px}
 .meta{display:flex;gap:20px;flex-wrap:wrap;margin-top:28px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
 @media(max-width:850px){.task-bar{grid-template-columns:1fr}.site-frame{height:70vh}.choices{grid-template-columns:1fr}.study-card{padding:30px}.question .choices{grid-template-columns:1fr}}
+
