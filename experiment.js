@@ -291,10 +291,11 @@ function showThanks() {
       <section class="study-card">
         <div class="thank-mark">âœ“</div>
         <p class="eyebrow">Complete</p>
-        <h1>Thank you</h1>
+        <h1>Thank you for participating!</h1>
         <p>${session.saveMode === "firebase"
           ? "Your response has been recorded. You may now close this window."
           : "Your response could not be sent. Please keep this page open and tell the researcher."}</p>
+        <p>This study is part of an independent high school research project examining how interface organization and visual design influence usersâ€™ navigation and memory. Your anonymous responses will help me analyze how design decisions affect the user experience.</p>
         <div class="meta">
           <span>Participant ${escapeHtml(session.participantId)}</span>
           <span>Completion time ${escapeHtml(session.totalTimeSeconds)} seconds</span>
