@@ -51,9 +51,9 @@ function showConsent() {
   app.innerHTML = `
     <div class="center-shell">
       <section class="study-card">
-        <p class="eyebrow">About 5 minutes</p>
+        <p class="eyebrow">Your participation takes about 5 minutes.</p>
         <h1>Jam Hearts Website Study</h1>
-        <p>In this study, youâ€™ll be asked to complete three quick information-finding tasks, three memory questions, and then rate your experience. Your participation is entirely voluntary. This study will collect no names, emails, login information, or personal data. You may stop at any time by simply closing the page.</p>
+        <p>In this study, you'll be asked to complete three quick information-finding tasks, three memory questions, and then rate your experience. Your participation is entirely voluntary. This study will collect no names, emails, login information, or personal data. You may stop at any time by simply closing the page.</p>
         <p><strong>Disclaimer:</strong> Use a laptop and complete the tasks all in one sitting.</p>
         <label class="consent-box">
           <input id="consent" type="checkbox">
