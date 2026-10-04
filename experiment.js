@@ -74,6 +74,18 @@ function showConsent() {
   begin.addEventListener("click", beginStudy);
 }
 
+function showPilotClosed() {
+  app.innerHTML = `
+    <div class="center-shell">
+      <section class="study-card">
+        <p class="eyebrow">Pilot study complete</p>
+        <h1>Jam Hearts Pilot Study</h1>
+        <p>Data collection is now closed. This pilot study reached its planned sample of 9 participants.</p>
+        <p>Thank you for your interest.</p>
+      </section>
+    </div>`;
+}
+
 function beginStudy() {
   session = {
     participantId: participantId(),
@@ -204,7 +216,7 @@ async function finishStudy(event) {
   }
   const button = document.querySelector("#submit-study");
   button.disabled = true;
-  button.textContent = "Savingâ€¦";
+  button.textContent = "Saving…";
   const result = {
     participantId: session.participantId,
     condition: session.condition,
@@ -289,13 +301,13 @@ function showThanks() {
   app.innerHTML = `
     <div class="center-shell">
       <section class="study-card">
-        <div class="thank-mark">âœ“</div>
+        <div class="thank-mark">✓</div>
         <p class="eyebrow">Complete</p>
         <h1>Thank you for participating!</h1>
         <p>${session.saveMode === "firebase"
           ? "Your response has been recorded. You may now close this window."
           : "Your response could not be sent. Please keep this page open and tell the researcher."}</p>
-        <p>This study is part of an independent high school research project examining how interface organization and visual design influence usersâ€™ navigation and memory. Your anonymous responses will help me analyze how design decisions affect the user experience.</p>
+        <p>This study is part of an independent high school research project examining how interface organization and visual design influence users’ navigation and memory. Your anonymous responses will help me analyze how design decisions affect the user experience.</p>
         <div class="meta">
           <span>Participant ${escapeHtml(session.participantId)}</span>
           <span>Completion time ${escapeHtml(session.totalTimeSeconds)} seconds</span>
@@ -304,5 +316,5 @@ function showThanks() {
     </div>`;
 }
 
-showConsent();
+showPilotClosed();
 
